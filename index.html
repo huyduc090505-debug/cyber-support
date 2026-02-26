@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SafeNet Cyberbullying Support</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:linear-gradient(135deg,#6a8cff,#b1c7ff);
+    text-align:center;
+    padding:30px;
+}
+.container{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    width:75%;
+    margin:auto;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+button{
+    padding:12px 18px;
+    margin:8px;
+    border:none;
+    border-radius:8px;
+    background:#4a6cff;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+button:hover{background:#2f4ed8;}
+.hidden{display:none;}
+img{
+    max-width:150px;
+    margin:10px;
+}
+.chatbox{
+    border:1px solid #ccc;
+    padding:10px;
+    height:150px;
+    overflow:auto;
+    text-align:left;
+    margin-top:10px;
+}
+input{
+    padding:8px;
+    width:70%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🛡 SafeNet Cyberbullying Support</h2>
+
+<!-- HOME -->
+<div id="home">
+<button onclick="openPage('guide')">🚨 Tôi đang bị bắt nạt</button>
+<button onclick="openPage('evidence')">📷 Lưu bằng chứng</button>
+<button onclick="openPage('contact')">☎ Người cần liên hệ</button>
+</div>
+
+<!-- GUIDE -->
+<div id="guide" class="hidden">
+<h3>Hướng dẫn xử lý từng bước</h3>
+<p>1️⃣ Giữ bình tĩnh, không phản hồi ngay</p>
+<p>2️⃣ Chụp màn hình bằng chứng</p>
+<p>3️⃣ Chặn tài khoản gây hại</p>
+<p>4️⃣ Báo cáo bài viết hoặc tài khoản</p>
+<p>5️⃣ Liên hệ người hỗ trợ</p>
+
+<hr>
+
+<h3>💬 SafeBot Support</h3>
+<div class="chatbox" id="chat"></div>
+<input id="userInput" placeholder="Type your message...">
+<button onclick="chat()">Send</button>
+
+<br><br>
+<button onclick="goHome()">⬅ Quay lại</button>
+</div>
+
+<!-- EVIDENCE -->
+<div id="evidence" class="hidden">
+<h3>Lưu bằng chứng (Screenshot)</h3>
+<input type="file" accept="image/*" onchange="previewImage(event)">
+<div id="preview"></div>
+<button onclick="goHome()">⬅ Quay lại</button>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="hidden">
+<h3>Danh sách liên hệ hỗ trợ</h3>
+
+<p>🚨 Công an khẩn cấp: <b>113</b></p>
+<p>🚑 Cấp cứu y tế: <b>115</b></p>
+<p>🧠 Tổng đài bảo vệ trẻ em & tư vấn tâm lý: <b>111 (24/7)</b></p>
+
+<hr>
+
+<p>🎓 Cố vấn học tập / Phòng công tác sinh viên</p>
+<p>👨‍👩‍👧 Gia đình / Người thân</p>
+<p>🤝 Bạn bè tin cậy</p>
+
+<button onclick="goHome()">⬅ Quay lại</button>
+</div>
+
+</div>
+
+<script>
+
+function openPage(page){
+    document.getElementById("home").style.display="none";
+    document.getElementById("guide").style.display="none";
+    document.getElementById("evidence").style.display="none";
+    document.getElementById("contact").style.display="none";
+
+    document.getElementById(page).style.display="block";
+
+    if(page==="guide"){
+        document.getElementById("chat").innerHTML=
+        "SafeBot: Hello, I'm here to support you. Tell me how you feel.<br>";
+    }
+}
+
+function goHome(){
+    document.getElementById("home").style.display="block";
+    document.getElementById("guide").style.display="none";
+    document.getElementById("evidence").style.display="none";
+    document.getElementById("contact").style.display="none";
+}
+
+function previewImage(event){
+    let preview=document.getElementById("preview");
+    let file=event.target.files[0];
+    if(file){
+        let img=document.createElement("img");
+        img.src=URL.createObjectURL(file);
+        preview.appendChild(img);
+    }
+}
+
+function chat(){
+    let input=document.getElementById("userInput").value;
+    if(input=="") return;
+
+    let chatbox=document.getElementById("chat");
+    chatbox.innerHTML+= "<b>You:</b> "+input+"<br>";
+
+    let reply="You are not alone. Try talking to someone you trust.";
+    if(input.toLowerCase().includes("scared"))
+        reply="It is normal to feel scared. Please contact a trusted person.";
+    if(input.toLowerCase().includes("sad"))
+        reply="Your feelings matter. Consider reaching out for support.";
+    if(input.toLowerCase().includes("angry"))
+        reply="Take a deep breath and avoid replying immediately online.";
+
+    chatbox.innerHTML+= "<b>SafeBot:</b> "+reply+"<br>";
+    chatbox.scrollTop=chatbox.scrollHeight;
+
+    document.getElementById("userInput").value="";
+}
+
+</script>
+
+</body>
+</html>
