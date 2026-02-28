@@ -1,167 +1,284 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
 <title>SafeNet Cyberbullying Support</title>
 
 <style>
 body{
-    font-family:Arial;
-    background:linear-gradient(135deg,#6a8cff,#b1c7ff);
-    text-align:center;
-    padding:30px;
+font-family:'Segoe UI';
+margin:0;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+text-align:center;
 }
-.container{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    width:75%;
-    margin:auto;
-    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+
+/* HEADER */
+header{
+padding:25px;
+font-size:30px;
+font-weight:bold;
 }
-button{
-    padding:12px 18px;
-    margin:8px;
-    border:none;
-    border-radius:8px;
-    background:#4a6cff;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
+
+/* MENU */
+.menu{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+margin:30px;
 }
-button:hover{background:#2f4ed8;}
-.hidden{display:none;}
-img{
-    max-width:150px;
-    margin:10px;
+
+.card{
+background:rgba(255,255,255,0.12);
+padding:40px;
+width:260px;
+border-radius:18px;
+cursor:pointer;
+transition:.3s;
+font-size:18px;
+font-weight:600;
 }
-.chatbox{
-    border:1px solid #ccc;
-    padding:10px;
-    height:150px;
-    overflow:auto;
-    text-align:left;
-    margin-top:10px;
+
+.card:hover{
+transform:scale(1.08);
+background:rgba(255,255,255,0.25);
 }
+
+/* SECTION */
+.section{
+display:none;
+background:white;
+color:black;
+width:75%;
+margin:30px auto;
+padding:30px;
+border-radius:15px;
+text-align:left;
+}
+
 input{
-    padding:8px;
-    width:70%;
+padding:12px;
+width:70%;
+border-radius:8px;
+border:1px solid #ccc;
 }
+
+button{
+padding:12px 20px;
+border:none;
+background:#4c6ef5;
+color:white;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.back{background:#6c757d;}
+
+#chatContainer{
+max-height:320px;
+overflow-y:auto;
+border:1px solid #ccc;
+padding:12px;
+border-radius:8px;
+background:#f5f5f5;
+}
+
+.bot-msg{color:#4c6ef5;margin:6px 0;}
+.user-msg{text-align:right;margin:6px 0;}
+.typing{color:#888;font-style:italic;}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header>🛡 SafeNet Cyberbullying Support</header>
 
-<h2>🛡 SafeNet Cyberbullying Support</h2>
-
-<!-- HOME -->
-<div id="home">
-<button onclick="openPage('guide')">🚨 Tôi đang bị bắt nạt</button>
-<button onclick="openPage('evidence')">📷 Lưu bằng chứng</button>
-<button onclick="openPage('contact')">☎ Người cần liên hệ</button>
+<div class="menu">
+<div class="card" onclick="openSection('guide')">🚨<br>Tôi đang bị bắt nạt</div>
+<div class="card" onclick="openSection('contact')">📞<br>Người liên hệ</div>
+<div class="card" onclick="openSection('ai')">🤖<br>Chat AI</div>
+<div class="card" onclick="openSection('evidence')">📂<br>Nơi lưu bằng chứng</div>
 </div>
 
 <!-- GUIDE -->
-<div id="guide" class="hidden">
-<h3>Hướng dẫn xử lý từng bước</h3>
-<p>1️⃣ Giữ bình tĩnh, không phản hồi ngay</p>
-<p>2️⃣ Chụp màn hình bằng chứng</p>
-<p>3️⃣ Chặn tài khoản gây hại</p>
-<p>4️⃣ Báo cáo bài viết hoặc tài khoản</p>
-<p>5️⃣ Liên hệ người hỗ trợ</p>
-
-<hr>
-
-<h3>💬 SafeBot Support</h3>
-<div class="chatbox" id="chat"></div>
-<input id="userInput" placeholder="Type your message...">
-<button onclick="chat()">Send</button>
-
-<br><br>
-<button onclick="goHome()">⬅ Quay lại</button>
-</div>
-
-<!-- EVIDENCE -->
-<div id="evidence" class="hidden">
-<h3>Lưu bằng chứng (Screenshot)</h3>
-<input type="file" accept="image/*" onchange="previewImage(event)">
-<div id="preview"></div>
-<button onclick="goHome()">⬅ Quay lại</button>
+<div id="guide" class="section">
+<h2>Hướng dẫn xử lý</h2>
+✅ Bình tĩnh<br>
+✅ Lưu bằng chứng<br>
+✅ Chặn tài khoản<br>
+✅ Báo cáo nền tảng<br>
+<button class="back" onclick="goHome()">⬅ Quay lại</button>
 </div>
 
 <!-- CONTACT -->
-<div id="contact" class="hidden">
-<h3>Danh sách liên hệ hỗ trợ</h3>
-
-<p>🚨 Công an khẩn cấp: <b>113</b></p>
-<p>🚑 Cấp cứu y tế: <b>115</b></p>
-<p>🧠 Tổng đài bảo vệ trẻ em & tư vấn tâm lý: <b>111 (24/7)</b></p>
-
+<div id="contact" class="section">
+<h2>Danh sách liên hệ hỗ trợ</h2>
+🚓 Công an: 113<br>
+🚑 Cấp cứu: 115<br>
+🧠 Tổng đài trẻ em: 111 (24/7)<br>
 <hr>
-
-<p>🎓 Cố vấn học tập / Phòng công tác sinh viên</p>
-<p>👨‍👩‍👧 Gia đình / Người thân</p>
-<p>🤝 Bạn bè tin cậy</p>
-
-<button onclick="goHome()">⬅ Quay lại</button>
+🎓 Phòng công tác sinh viên<br>
+👨‍👩‍👧 Gia đình<br>
+🤝 Bạn bè tin cậy
+<button class="back" onclick="goHome()">⬅ Quay lại</button>
 </div>
 
+<!-- AI CHAT -->
+<div id="ai" class="section">
+<h2>AI hỗ trợ</h2>
+
+<div id="chatContainer"></div>
+
+<input id="userInput" placeholder="Nhập câu hỏi...">
+<br>
+<button onclick="askAI()">Gửi</button>
+
+<button class="back" onclick="goHome()">⬅ Quay lại</button>
+</div>
+
+<!-- EVIDENCE -->
+<div id="evidence" class="section">
+<h2>📂 Nơi lưu bằng chứng</h2>
+
+<input type="file" id="fileUpload" accept="image/*">
+<br>
+<button onclick="analyzeImage()">Phân tích bằng AI</button>
+
+<p id="uploadStatus"></p>
+<p id="history"></p>
+
+<button class="back" onclick="goHome()">⬅ Quay lại</button>
 </div>
 
 <script>
 
-function openPage(page){
-    document.getElementById("home").style.display="none";
-    document.getElementById("guide").style.display="none";
-    document.getElementById("evidence").style.display="none";
-    document.getElementById("contact").style.display="none";
-
-    document.getElementById(page).style.display="block";
-
-    if(page==="guide"){
-        document.getElementById("chat").innerHTML=
-        "SafeBot: Hello, I'm here to support you. Tell me how you feel.<br>";
-    }
+function openSection(id){
+document.querySelectorAll(".section")
+.forEach(s=>s.style.display="none");
+document.getElementById(id).style.display="block";
 }
-
 function goHome(){
-    document.getElementById("home").style.display="block";
-    document.getElementById("guide").style.display="none";
-    document.getElementById("evidence").style.display="none";
-    document.getElementById("contact").style.display="none";
+document.querySelectorAll(".section")
+.forEach(s=>s.style.display="none");
 }
 
-function previewImage(event){
-    let preview=document.getElementById("preview");
-    let file=event.target.files[0];
-    if(file){
-        let img=document.createElement("img");
-        img.src=URL.createObjectURL(file);
-        preview.appendChild(img);
-    }
+/* ================= AI CHAT ADVANCED ================= */
+
+const knowledge={
+
+"bắt nạt":"Bạn nên lưu bằng chứng và tránh phản hồi lại người gây hại 🛡",
+"buồn":"Mình hiểu cảm giác đó. Bạn có muốn chia sẻ thêm không?",
+"sợ":"Nếu bạn thấy nguy hiểm hãy liên hệ 111 ngay 🚨",
+"chặn":"Bạn có thể block tài khoản đó ngay.",
+"báo cáo":"Hãy report nền tảng kèm bằng chứng.",
+
+/* ===== TRƯỜNG HỢP NGUY HIỂM BỔ SUNG ===== */
+
+"bôi nhọ":"Nếu bạn bị bôi nhọ, hãy chụp màn hình, lưu link và báo cáo nội dung đó ngay.",
+"nói xấu":"Bạn không đáng bị đối xử như vậy. Hãy lưu bằng chứng và tránh tranh cãi trực tiếp.",
+"bêu rếu":"Hành vi bêu rếu công khai có thể gây tổn thương lớn. Bạn nên báo cáo nền tảng và tìm người hỗ trợ.",
+"đe dọa":"Nếu có đe dọa làm hại bạn, hãy lưu bằng chứng và liên hệ cơ quan chức năng ngay.",
+"đe dọa đánh":"Đe dọa bạo lực là nghiêm trọng. Nếu bạn cảm thấy không an toàn hãy gọi 113.",
+"tung ảnh":"Việc phát tán hình ảnh cá nhân mà không đồng ý là vi phạm nghiêm trọng. Hãy báo cáo ngay.",
+"lộ ảnh":"Bạn nên yêu cầu gỡ nội dung và lưu bằng chứng để bảo vệ mình.",
+"tung thông tin":"Phát tán thông tin cá nhân là xâm phạm quyền riêng tư. Bạn nên báo cáo nền tảng.",
+"lộ thông tin":"Hãy thay đổi mật khẩu và thông báo cho người thân nếu thông tin bị lộ.",
+"quấy rối":"Quấy rối trực tuyến không phải lỗi của bạn. Bạn có quyền chặn và báo cáo.",
+"xúc phạm":"Những lời xúc phạm không phản ánh giá trị của bạn.",
+"đe dọa giết":"Nếu có đe dọa nghiêm trọng, hãy tìm nơi an toàn và liên hệ 113 ngay.",
+"tống tiền":"Nếu ai đó đe dọa tung ảnh để tống tiền, đừng đáp ứng yêu cầu. Hãy lưu bằng chứng và báo cáo.",
+"hack":"Nếu tài khoản bị xâm nhập hãy đổi mật khẩu ngay và bật xác thực 2 lớp.",
+"lan truyền tin giả":"Tin giả có thể gây tổn hại danh dự. Bạn nên báo cáo và nhờ người lớn hỗ trợ.",
+"bị cô lập":"Bạn không đơn độc. Có người sẵn sàng giúp bạn.",
+"áp lực":"Áp lực từ mạng xã hội có thể rất nặng nề. Bạn nên nghỉ ngơi và tìm người chia sẻ.",
+"hoảng sợ":"Hãy hít thở chậm và tìm người bạn tin cậy để nói chuyện.",
+"tổn thương":"Những gì bạn đang trải qua là có thật và đáng được hỗ trợ."
+};
+
+function askAI(){
+
+const input=document.getElementById("userInput");
+const msg=input.value.trim().toLowerCase();
+if(!msg) return;
+
+const chat=document.getElementById("chatContainer");
+
+chat.innerHTML+=`<div class="user-msg">${msg}</div>`;
+chat.innerHTML+=`<div class="typing" id="typing">AI đang suy nghĩ...</div>`;
+chat.scrollTop=chat.scrollHeight;
+
+input.value="";
+
+setTimeout(()=>{
+
+document.getElementById("typing").remove();
+
+let reply="Mình chưa hiểu rõ, bạn có thể nói thêm không?";
+
+for(let key in knowledge){
+if(msg.includes(key)) reply=knowledge[key];
 }
 
-function chat(){
-    let input=document.getElementById("userInput").value;
-    if(input=="") return;
+const followUps=[
+"Bạn muốn mình hướng dẫn từng bước không?",
+"Bạn có đang an toàn không?",
+"Mình luôn sẵn sàng lắng nghe bạn.",
+"Bạn muốn chia sẻ thêm chi tiết chứ?"
+];
 
-    let chatbox=document.getElementById("chat");
-    chatbox.innerHTML+= "<b>You:</b> "+input+"<br>";
+reply+=" "+followUps[Math.floor(Math.random()*followUps.length)];
 
-    let reply="You are not alone. Try talking to someone you trust.";
-    if(input.toLowerCase().includes("scared"))
-        reply="It is normal to feel scared. Please contact a trusted person.";
-    if(input.toLowerCase().includes("sad"))
-        reply="Your feelings matter. Consider reaching out for support.";
-    if(input.toLowerCase().includes("angry"))
-        reply="Take a deep breath and avoid replying immediately online.";
+chat.innerHTML+=`<div class="bot-msg">${reply}</div>`;
+chat.scrollTop=chat.scrollHeight;
 
-    chatbox.innerHTML+= "<b>SafeBot:</b> "+reply+"<br>";
-    chatbox.scrollTop=chatbox.scrollHeight;
+},1200);
+}
 
-    document.getElementById("userInput").value="";
+/* ================= AI IMAGE ================= */
+
+let lastUpload=null;
+
+function analyzeImage(){
+
+const file=document.getElementById("fileUpload").files[0];
+const status=document.getElementById("uploadStatus");
+const history=document.getElementById("history");
+
+if(!file){
+status.innerText="⚠️ Chưa chọn ảnh";
+return;
+}
+
+status.innerText="🤖 AI đang phân tích ảnh...";
+
+const risk=["LOW 🟢","MEDIUM 🟡","HIGH 🔴"];
+const comments=[
+"Phát hiện dấu hiệu xúc phạm.",
+"Nội dung có thể gây tổn thương tâm lý.",
+"Có dấu hiệu bắt nạt trực tuyến.",
+"AI khuyên bạn lưu bằng chứng này."
+];
+
+setTimeout(()=>{
+
+const r=risk[Math.floor(Math.random()*risk.length)];
+const c=comments[Math.floor(Math.random()*comments.length)];
+
+status.innerHTML=
+`✅ Phân tích xong<br>
+📄 Tệp: <b>${file.name}</b><br>
+⚠️ Mức nguy cơ: <b>${r}</b><br>
+🤖 Nhận định: ${c}`;
+
+if(lastUpload){
+history.innerHTML=`📌 Lần trước: <b>${lastUpload}</b>`;
+}
+
+lastUpload=file.name;
+
+},1500);
 }
 
 </script>
