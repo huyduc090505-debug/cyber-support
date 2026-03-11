@@ -102,7 +102,6 @@ background:#f5f5f5;
 <div class="card" onclick="openSection('evidence')">📂<br>Nơi lưu bằng chứng</div>
 </div>
 
-<!-- GUIDE -->
 <div id="guide" class="section">
 <h2>Hướng dẫn xử lý</h2>
 ✅ Bình tĩnh<br>
@@ -112,7 +111,6 @@ background:#f5f5f5;
 <button class="back" onclick="goHome()">⬅ Quay lại</button>
 </div>
 
-<!-- CONTACT -->
 <div id="contact" class="section">
 <h2>Danh sách liên hệ hỗ trợ</h2>
 🚓 Công an: 113<br>
@@ -125,7 +123,6 @@ background:#f5f5f5;
 <button class="back" onclick="goHome()">⬅ Quay lại</button>
 </div>
 
-<!-- AI CHAT -->
 <div id="ai" class="section">
 <h2>AI hỗ trợ</h2>
 
@@ -138,7 +135,6 @@ background:#f5f5f5;
 <button class="back" onclick="goHome()">⬅ Quay lại</button>
 </div>
 
-<!-- EVIDENCE -->
 <div id="evidence" class="section">
 <h2>📂 Nơi lưu bằng chứng</h2>
 
@@ -174,8 +170,6 @@ const knowledge={
 "chặn":"Bạn có thể block tài khoản đó ngay.",
 "báo cáo":"Hãy report nền tảng kèm bằng chứng.",
 
-/* ===== TRƯỜNG HỢP NGUY HIỂM BỔ SUNG ===== */
-
 "bôi nhọ":"Nếu bạn bị bôi nhọ, hãy chụp màn hình, lưu link và báo cáo nội dung đó ngay.",
 "nói xấu":"Bạn không đáng bị đối xử như vậy. Hãy lưu bằng chứng và tránh tranh cãi trực tiếp.",
 "bêu rếu":"Hành vi bêu rếu công khai có thể gây tổn thương lớn. Bạn nên báo cáo nền tảng và tìm người hỗ trợ.",
@@ -194,7 +188,38 @@ const knowledge={
 "bị cô lập":"Bạn không đơn độc. Có người sẵn sàng giúp bạn.",
 "áp lực":"Áp lực từ mạng xã hội có thể rất nặng nề. Bạn nên nghỉ ngơi và tìm người chia sẻ.",
 "hoảng sợ":"Hãy hít thở chậm và tìm người bạn tin cậy để nói chuyện.",
-"tổn thương":"Những gì bạn đang trải qua là có thật và đáng được hỗ trợ."
+"tổn thương":"Những gì bạn đang trải qua là có thật và đáng được hỗ trợ.",
+
+/* ===== KEYWORD BỔ SUNG ===== */
+
+"chửi":"Bạn không cần chịu đựng những lời chửi xúc phạm.",
+"chửi tục":"Những lời chửi tục có thể gây tổn thương tinh thần.",
+"lăng mạ":"Lăng mạ là hành vi bạo lực mạng.",
+"sỉ nhục":"Những lời sỉ nhục có thể gây tổn thương.",
+"miệt thị":"Miệt thị người khác là hành vi tiêu cực.",
+"nhục mạ":"Nhục mạ trên mạng là một dạng bắt nạt.",
+"spam":"Nếu ai đó spam tin nhắn hãy block họ.",
+"troll":"Đừng phản hồi troll. Hãy bỏ qua hoặc block.",
+"cà khịa":"Cà khịa liên tục có thể gây tổn thương.",
+"fake":"Có thể đây là tài khoản giả.",
+"clone":"Tài khoản clone có thể đang mạo danh.",
+"scam":"Có dấu hiệu lừa đảo.",
+"lừa":"Hãy cẩn thận với các tin nhắn lừa đảo.",
+"link":"Không nên nhấp vào link lạ.",
+"chuyển tiền":"Không chuyển tiền cho người lạ.",
+"body shaming":"Chế giễu ngoại hình là bạo lực mạng.",
+"xấu":"Không ai nên bị chế giễu ngoại hình.",
+"béo":"Miệt thị cân nặng có thể gây tổn thương.",
+"lùn":"Chế giễu chiều cao là body shaming.",
+"loser":"Những lời xúc phạm không phản ánh giá trị của bạn.",
+"stupid":"Bạn không cần chịu đựng sự xúc phạm.",
+"idiot":"Bạn có thể block người đang xúc phạm bạn.",
+"hate":"Ngôn từ thù ghét không nên được chấp nhận.",
+"kill":"Nếu ai đó đe dọa giết hãy tìm sự trợ giúp ngay.",
+"die":"Đe dọa tính mạng là hành vi nguy hiểm.",
+"dox":"Có thể ai đó đang cố làm lộ thông tin cá nhân.",
+"doxxing":"Công khai thông tin cá nhân là hành vi nguy hiểm."
+
 };
 
 function askAI(){
